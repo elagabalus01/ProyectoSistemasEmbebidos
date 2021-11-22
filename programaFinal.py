@@ -41,14 +41,14 @@ command = 'mount -t vboxsf lightshowpi /home/pi/lightshowpi'
 
 def pool():
   bot.infinity_polling()
-  
+
 # Bomba de agua
 def motor_on(pin):
 	GPIO.output(pin, GPIO.HIGH)
-	
+
 def motor_off(pin):
 	GPIO.output(pin, GPIO.LOW)
-	
+
 # Función de thread para ejecutar hardware_controller.py con flash
 def flash_thread():
   os.system("sudo python /home/pi/lightshowpi/py/hardware_controller.py --state=flash")
@@ -103,7 +103,7 @@ def turn_off(message):
 def turn_on(message):
     led.on()
     bot.reply_to(message,"se enciende led")
-    
+
 # Función de comando para encender la bomba
 @bot.message_handler(commands=["enciendeBomba"])
 def encendido(message):
@@ -121,13 +121,13 @@ def apagado(message):
 	#bot.reply_to(message,"Se apaga bomba")
 	bot.send_message("934906619","Bomba apagada")
 	#GPIO.cleanup()
-	
+
 # Función de comando para ejecutar hardware_controller.py con flash
 @bot.message_handler(commands=["flash"])
 def flash(message):
   bot.send_message("934906619","Iniciando flash")
   th.Thread(target=flash_thread).start()
-  
+
 # Función de comando para reproducir música y encender leds
 @bot.message_handler(commands=["musica"])
 def musica(message):
@@ -139,18 +139,18 @@ def musica(message):
 def show(message):
   bot.send_message("934906619","Iniciando show")
   th.Thread(target=show_thread).start()
-  
+
 # Función de comando para mostrar temperatura
 @bot.message_handler(commands=["temperatura"])
 def temperatura(message):
   bot.send_message("934906619","La temperatura es: "+str(math.trunc(tmpTemperatura))+"°C")
 
-# Función de comando para mostrar humedad	
+# Función de comando para mostrar humedad
 @bot.message_handler(commands=["humedad"])
 def humedad(message):
   bot.send_message("934906619","La humedad es: "+str(math.trunc(tmpHumedad))+"%")
 
-  
+
 #bot.infinity_polling()
 
 # Si se detecta movimiento se imprime en consola, se manda mensaje a telegram y se enciende el led
@@ -183,20 +183,3 @@ while True:
   time.sleep(5)
 
 bot.infinity_polling()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

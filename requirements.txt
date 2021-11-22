@@ -1,0 +1,3 @@
+bluedot
+PyTelegramBotAPI
+Adafruit_DHT
