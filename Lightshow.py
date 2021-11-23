@@ -19,7 +19,6 @@ class LightShow():
     def flash(message):
       bot.send_message("1320071778","Iniciando flash")
       Thread(target=self.flash_thread).start()
-      
     
     # Función de comando para ejecutar prepostshow
     @bot.message_handler(commands=["show"])
@@ -33,32 +32,13 @@ class LightShow():
       bot.send_message("1320071778","Reproduciendo música")
       Thread(target=self.musica_thread).start()
       
-    @bot.message_handler(commands=["terminarshow"])
-    def detener(message):
-      if self.currentPID!=-1 and (self.currentProcess != None):
-        print(f"Proceso {self.currentPID}")
-        #signal.raise_signal( signal.SIGINT )
-        self.currentProcess.kill()
-        os.kill(self.currentPID+1,signal.SIGKILL)
-        bot.send_message("1320071778","El show ha terminado")
-      else:
-        bot.send_message("1320071778","No hay show de luces")
       
   # Función de thread para ejecutar prepostshow
   def show_thread(self):
-    process=Popen(self.path_script_prepost)
-    self.currentPID=process.pid
-    self.currentProcess=process
+    Popen(self.path_script_prepost)
   # Función de thread para reproducir música y encender leds
   def musica_thread(self):
-    process=Popen(self.path_script_music)
-    self.currentPID=process.pid
-    self.currentProcess=process
-    print(f"Identificador de proceso {self.currentPID}")
+    Popen(self.path_script_music)
   # Función de thread para ejecutar hardware_controller.py con flash
   def flash_thread(self):
-    process=Popen(self.path_script_show)
-    self.currentPID=process.pid
-    self.currentProcess=process
-
-  
+    Popen(self.path_script_show)
