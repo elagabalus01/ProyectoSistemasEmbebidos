@@ -8,6 +8,7 @@ from signal import pause
 from Telegram import getServiceBot
 from gpiozero import LED, MotionSensor
 from TemperaturaHumedad import TemperaturaHumedad
+from Lightshow import LightShow
 def bluetooth_connection(led):
 	ctl_bluetooth=Bluetooth(led)
 	pause()
@@ -33,10 +34,14 @@ def intruso(bot):
 def sensorTemp(bot):
 	ctlTempHum=TemperaturaHumedad(bot)
 	ctlTempHum.run()
+#def show_luces(bot):
+#	ctlShow=LightShow(bot)
+	
 if __name__=="__main__":
 	print("Iniciando ejecución")
 	led= LED(13)
 	bot=getServiceBot(led)
+	ctlShow=LightShow(bot)
 	t1=Thread(target=bluetooth_connection,args=(led,))
 	t2=Thread(target=telegram,args=(bot,))
 	t3=Thread(target=intruso,args=(bot,))
