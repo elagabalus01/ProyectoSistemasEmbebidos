@@ -27,25 +27,29 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img src="/static/images/img-01.png" alt="IMG">
+					<img src="/static/images/logo_l.png" alt="IMG">
 				</div>
 
 				<form action="" method="POST" class="login100-form validate-form">
-					<span class="login100-form-title">
+					<h1><b>
+						<span class="login100-form-title">
+						<i class="fa fa-home"></i> 
 						PiHome
-					</span>
+						</span>
+					</b></h1>
+					<p>Por favor, ingresa los datos:</p><br>
 					<span class="txt1" style="color: red;">{{ error }}</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="username" placeholder="Username or Email" value="{{ request.form.username }}">
+					<div class="wrap-input100 validate-input" data-validate = "Se requiere email válido: ex@abc.xyz">
+						<input class="input100" type="text" name="username" placeholder="Usuario o email" value="{{ request.form.username }}">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="password" placeholder="Password" value="{{ request.form.password }}">
+					<div class="wrap-input100 validate-input" data-validate = "Se requiere contraseña">
+						<input class="input100" type="password" name="password" placeholder="Contraseña" value="{{ request.form.password }}">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -54,11 +58,13 @@
 					
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn btn btn-default">
-							Inicia sesión
+							Iniciar sesión
 						</button>
 					</div>
 
-					<div class="text-center p-t-12">
+					<br><br><br><br><br><br><br>
+
+					<!--div class="text-center p-t-12">
 						<span class="txt1">
 							Olvidaste tu 
 						</span>
@@ -75,7 +81,7 @@
 							Crea tu cuenta
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
-					</div>
+					</div-->
 				</form>
 			</div>
 		</div>

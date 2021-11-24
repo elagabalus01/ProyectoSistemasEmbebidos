@@ -32,23 +32,28 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
   <div class="w3-container w3-row">
-    <div class="w3-col s4">
+    <!--div class="w3-col s4">
       <img src="{{ user.image }}" class="w3-circle w3-margin-right" style="width:46px">
-    </div>
-    <div class="w3-col s8 w3-bar">
-      <span>Bienvenido, <strong>{{ user.username }}</strong></span><br>
-      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+    </div-->
+    <!--div class="w3-col s4 w3-center">
+      <img src="/static/images/logo_m.png" class="w3-circle" style="width:46px">
+    </div-->
+    <div class="w3-col s12 w3-bar w3-center">
+      <!--span>Bienvenido, <strong>{{ user.username }}</strong></span><br-->
+      <img src="/static/images/logo_m.png" class="w3-circle" style="width:100px">
+      <b><h2>Bienvenid@ a tu cuarto inteligente<br></h2></b>
+      <!--a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a-->
     </div>
   </div>
   <hr>
-  <div class="w3-container">
-    <h5>Dashboard</h5>
+  <div class="w3-container w3-center" style="padding-top:50px;padding-bottom:50px;">
+    <h5></h5>
   </div>
-  <div class="w3-bar-block">
+  <div class="w3-bar-block w3-center">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-white w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Cerrar Menu</a>
-    <a href="/overview/{{ user.username }}/{{ user.session }}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
+    <a href="/overview/{{ user.username }}/{{ user.session }}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Panorama general</a>
 
     <!-- {% for device in devices %}
 
@@ -59,7 +64,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Field device Controls</a> -->
     <!-- <a href="/apisettings/{{ user.username }}/{{ user.session }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  API settings</a> -->
     <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Device Manager</a> -->
-    <a href="/profile/{{ user.username }}/{{ user.session }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>Cuenta</a><br><br>
+    <a href="/profile/{{ user.username }}/{{ user.session }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i> Ajustes</a><br><br>
   </div>
 </nav>
 
@@ -71,14 +76,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
   <!-- Header -->
-  <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+  <header class="w3-container w3-center" style="padding-top:22px;padding-bottom:22px;">
+    <h1><b><i class="fa fa-dashboard"></i> PiHome Dashboard</b></h1>
   </header>
 
   <div class="w3-row-padding w3-margin-bottom">
     <div class="w3-quarter">
       <div class="w3-container w3-white w3-hover-shadow w3-border-red w3-bottombar w3-padding-16">
-        <div class="w3-left"><img src="/static/images/temperature.svg"></div>
+        <div class="w3-left"><img src="/static/images/temperature.png"></div>
         <div class="w3-right">
           <h3  id = "card-temp">52</h3>
         </div>
@@ -135,11 +140,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
 
   <div class="w3-container w3-center w3-padding-16">
-    <button class="w3-button w3-blue w3-large w3-round-large">Activar asistente virtual</button>
+    <button id="btn-asistentevirtual" class="w3-button w3-blue w3-large w3-round-large">Activar asistente virtual</button>
   </div>
 
   <div class="w3-container w3-center w3-padding-16">
-    <button class="w3-button w3-indigo w3-large w3-round-large">Activar asistente de Google</button>
+    <button id="btn-google" class="w3-button w3-indigo w3-large w3-round-large">Activar asistente de Google</button>
   </div>
 
   <div class="w3-container w3-center w3-padding-16">
@@ -147,13 +152,13 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
 
   <div class="w3-container w3-center w3-padding-16">
-    <button class="w3-button w3-teal w3-large w3-round-large">Regar plantas</button>
+    <button id="btn-bomba" class="w3-button w3-teal w3-large w3-round-large">Regar plantas</button>
   </div>
 
 <div class="w3-panel w3-padding-large">
   <div class="w3-container w3-white w3-card w3-hover-shadow w3-section w3-round-large">
     <h3>
-      Temperatura
+      Temperatura °C
     </h3> 
     <canvas id="temperature" ></canvas>
     </div>
@@ -161,7 +166,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     
     <div class="w3-container w3-white w3-card w3-hover-shadow w3-section w3-round-large">
       <h3>
-        Humedad
+        Humedad %
       </h3> 
       <canvas id="humidity" ></canvas>
     </div>
