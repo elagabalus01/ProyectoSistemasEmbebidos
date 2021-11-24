@@ -46,7 +46,7 @@ def run_server(app):
 if __name__=="__main__":
 	print("Iniciando ejecución")
 	led=LED(13)
-	led_bomba=LED(25)
+	led_bomba=LED(21)
 	bot=getServiceBot(led)
 	ctlShow=LightShow(bot,app)
 	ctlAsistente=AsistenteVirtual(bot,app)
