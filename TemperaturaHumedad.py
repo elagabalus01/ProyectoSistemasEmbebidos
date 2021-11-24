@@ -3,7 +3,7 @@ import time
 import telebot
 import math
 from threading import Thread
-import jsonify
+from flask import jsonify
 
 class TemperaturaHumedad():
   def __init__(self,bot,app):

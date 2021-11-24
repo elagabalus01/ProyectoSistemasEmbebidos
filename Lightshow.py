@@ -1,7 +1,8 @@
 import os
 from threading import Thread
 import signal
-from subprocess import Popen,call
+from subprocess import Popen,call,PIPE
+sudo_password = 'raspberry'
 class LightShow():
   def __init__(self,bot):
     sufix=['sudo','python']
@@ -35,10 +36,13 @@ class LightShow():
       
   # Función de thread para ejecutar prepostshow
   def show_thread(self):
-    Popen(self.path_script_prepost)
+    p=Popen(self.path_script_prepost,stdin=PIPE,stderr=PIPE,universal_newlines=True)
+    sudo_prompt = p.communicate(sudo_password + '\n')[1]
   # Función de thread para reproducir música y encender leds
   def musica_thread(self):
-    Popen(self.path_script_music)
+    p=Popen(self.path_script_music,stdin=PIPE,stderr=PIPE,universal_newlines=True)
+    sudo_prompt = p.communicate(sudo_password + '\n')[1]
   # Función de thread para ejecutar hardware_controller.py con flash
   def flash_thread(self):
-    Popen(self.path_script_show)
+    p=Popen(self.path_script_show,stdin=PIPE,stderr=PIPE,universal_newlines=True)
+    sudo_prompt = p.communicate(sudo_password + '\n')[1]
