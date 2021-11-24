@@ -9,7 +9,11 @@ alter table users add primary key (username, api_key);
 truncate users;
 
 insert into users (username, password, first_name, last_name, email, phone_number, last_login, api_key) 
-values ('angel', 'password', 'Angel', 'Santander', 'angelsantander609@gmail.com', '8770262013', now(), 'abhikuchnhihai');
+values 
+('angel', 'password', 'Angel', 'Santander', 'angelsantander609@gmail.com', '8770262013', now(), 'abhikuchnhihai'),
+('gustavo', 'password', 'Gustavo', 'Jiménez', 'jimenezruizga@gmail.com', '0182656548', now(), 'abhikuchnhihai'),
+('agustin', 'password', 'Agustín', 'Hernández', 'agustinht.fi@gmail.com', '5479413892', now(), 'abhikuchnhihai'),
+('alejandro', 'password', 'Alejandro', 'Anaya', 'yair.anaya@ingenieria.unam.edu', '4875142894', now(), 'abhikuchnhihai');
 
 create table Node (deviceID varchar(255), username varchar(255), field_name varchar(255), temperature int, humidity int, moisture int, light int, 
 foreign key (username) references users(username), primary key (deviceID));
@@ -35,4 +39,3 @@ update users set last_login = now() where username = "hellboy";
 select * from Rosegarden;
 select * from (select * from Rosegarden order by date_time desc limit 10) dummy order by date_time asc;
 select * from (select * from Rosegarden order by date_time desc limit 10) dummy order by date_time asc;
-

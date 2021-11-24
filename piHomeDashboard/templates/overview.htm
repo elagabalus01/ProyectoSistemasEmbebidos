@@ -32,19 +32,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
   <div class="w3-container w3-row">
-    <!--div class="w3-col s4">
-      <img src="{{ user.image }}" class="w3-circle w3-margin-right" style="width:46px">
-    </div-->
-    <!--div class="w3-col s4 w3-center">
-      <img src="/static/images/logo_m.png" class="w3-circle" style="width:46px">
-    </div-->
     <div class="w3-col s12 w3-bar w3-center">
-      <!--span>Bienvenido, <strong>{{ user.username }}</strong></span><br-->
       <img src="/static/images/logo_m.png" class="w3-circle" style="width:100px">
       <b><h2>Bienvenid@ a tu cuarto inteligente<br></h2></b>
-      <!--a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
-      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a-->
     </div>
   </div>
   <hr>
@@ -54,16 +44,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <div class="w3-bar-block w3-center">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-white w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Cerrar Menu</a>
     <a href="/overview/{{ user.username }}/{{ user.session }}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Panorama general</a>
-
-    <!-- {% for device in devices %}
-
-    <a href="{{ device.Dashboard }}" class="w3-bar-item w3-button w3-padding"> <img src="/static/images/bio-sensor.svg"> {{ device.deviceID }}</a>
-    
-    {% endfor %} -->
-
-    <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Field device Controls</a> -->
-    <!-- <a href="/apisettings/{{ user.username }}/{{ user.session }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  API settings</a> -->
-    <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Device Manager</a> -->
     <a href="/profile/{{ user.username }}/{{ user.session }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i> Ajustes</a><br><br>
   </div>
 </nav>
@@ -91,18 +71,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <h4>Temperatura</h4>
       </div>
     </div>
-    <!-- 
-    <div class="w3-quarter">
-      <div class="w3-container w3-white w3-hover-shadow w3-border-blue w3-bottombar w3-padding-16">
-        <div class="w3-left"><img src="/static/images/grass.svg"></div>
-        <div class="w3-right">
-          <h3 id = "card-moisture">99</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Moisture</h4>
-      </div>
-    </div>
-  -->
 
     <div class="w3-quarter">
       <div class="w3-container w3-white w3-hover-shadow w3-border-teal w3-bottombar w3-padding-16">
@@ -125,18 +93,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <h4>Intruso</h4>
       </div>
     </div>
-    <!--
-    <div class="w3-quarter">
-      <div class="w3-container w3-white w3-hover-shadow w3-border-orange w3-bottombar w3-padding-16">
-        <div class="w3-left"><img src="/static/images/ecology.svg"></div>
-        <div class="w3-right">
-          <h3 id = "card-light">50</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Light Intensity</h4>
-      </div>
-    </div>
-     -->
   </div>
 
   <div class="w3-container w3-center w3-padding-16">
@@ -167,71 +123,29 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <canvas id="temperature" ></canvas>
     </div>
 
-    
     <div class="w3-container w3-white w3-card w3-hover-shadow w3-section w3-round-large">
       <h3>
         Humedad %
       </h3> 
       <canvas id="humidity" ></canvas>
     </div>
-    
-    <!-- <div class="w3-container w3-white w3-card w3-hover-shadow w3-section w3-round-large">
-      <h3>
-        Moisture
-      </h3> 
-      <canvas id="moisture" ></canvas>
-    </div>
-    -->
-    <!-- <div class="w3-container w3-white w3-card w3-hover-shadow w3-section w3-round-large">
-      <h3>
-        Light Intensity
-      </h3> 
-      <canvas id="light" ></canvas>
-    </div>
-    -->
-
 </div>
-  
-  <!-- 
-  <div class="w3-panel w3-padding-16">
-    <div class="w3-row-padding w3-white w3-border-green w3-margin-left w3-leftbar" style="margin:0 -16px">
-      <div class="w3-third w3-padding-16">
-        <h5>Field Description</h5>
-        <img src="/static/images/trees.svg" style="width:100%" alt="">
-      </div>
-      <div class="w3-twothird">
-        <h5>SunFlower Garden</h5>
-        
-        <p>
-          Something is going to be in here
-        </p>
-
-      </div>
-    </div>
-  </div>
-  <br>
   
   <div class="w3-container w3-dark-grey w3-padding-32">
     <div class="w3-row">
       <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-green">Contributers</h5>
-        <h6>Aman Singh</h6>
-        <h6>Rica Ghosh</h6>
-        <h6>Deepak Yadu</h6>
-        <h6>Khyati banjare</h6>
-        <h6>Arwind</h6>
+        <h5 class="w3-bottombar w3-border-green">Creadores de solución IoT</h5>
+        <h6>Anaya Ruiz Yair Alejandro</h6>
+        <h6>Hernández Torres Agustin de Jesús</h6>
+        <h6>Jiménez Ruiz Gustavo Alfredo</h6>
+        <h6>Santander Martínez Ángel Antonio</h6>
       </div>
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-red">Guides</h5>
-        <h6>All faculties Of BIT Raipur</h6>
-      </div>
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-orange">References</h5>
-        <h6>Google.com</h6>
+      <!--div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-orange">Referencias</h5>
+        <h6>Text</h6-->
       </div>
     </div>
   </div>
-   -->
 </div>
 
 <script>

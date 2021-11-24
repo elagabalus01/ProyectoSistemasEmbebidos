@@ -1,4 +1,3 @@
-# Flask IoT Dashboard
+# Web Dashboard PIHome
 
-Script is provided for the database (sorry for the mess that i have made in script i know you are smart and you can figure out)
-If you want to know more about this project watch this video: - https://youtu.be/XqR6oifgDZI
+La información para crear la API junto con dashboard se encuentra en el siguiente video: - https://youtu.be/XqR6oifgDZI

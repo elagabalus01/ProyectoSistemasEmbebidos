@@ -17,7 +17,6 @@ mydb = database.db(env['user'],env['ip'],env['password'],env['db'])
 
 #test api key aGFja2luZ2lzYWNyaW1lYXNmc2FmZnNhZnNhZmZzYQ==
 
-
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     error = ""
@@ -33,6 +32,7 @@ def login():
     return render_template('Login.htm', error=error)
     
 #this links is for device 1 
+
 @app.route('/device1/<string:username>/<string:session>', methods=["GET", "POST"])
 def Dashoboard():
     user = {
@@ -201,7 +201,6 @@ def device_info (apikey, deviceID):
     
     else:
         data = api_loggers[apikey]["object"].dev_info(deviceID)
-
         #this part is hard coded so remove after fixing the issue
         data = list(data)
         data[2] = "Rosegarden"

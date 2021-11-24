@@ -35,13 +35,6 @@ def intruso(bot,app):
 def sensorTemp(bot,app):
 	ctlTempHum=TemperaturaHumedad(bot,app)
 	ctlTempHum.run()
-
-'''
-def run_server(app):
-	app.run(host="0.0.0.0", port = "80", debug=True)
-'''
-#def show_luces(bot):
-#	ctlShow=LightShow(bot)
 	
 if __name__=="__main__":
 	print("Iniciando ejecución")
@@ -57,13 +50,11 @@ if __name__=="__main__":
 	t2=Thread(target=telegram,args=(bot,))
 	t3=Thread(target=intruso,args=(bot,app,))
 	t4=Thread(target=sensorTemp,args=(bot,app,))
-	#t5=Thread(target=run_server,args=(app,))
 	t0=Thread(target=debug)
 	t1.start()
 	t2.start()
 	t3.start()
 	t4.start()
-	#t0.start()
 	app.run(host="0.0.0.0", port = "3000")
 
 

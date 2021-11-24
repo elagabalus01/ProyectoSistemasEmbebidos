@@ -8,7 +8,6 @@ def deconvert(data):
     return json.loads(data)
 
 mydict = {"name": "Aman Singh", "Age":18}
-# mydict = ["Aman", "singh", 18]
 
 def base_encode(message):
     message_bytes = message.encode('ascii')

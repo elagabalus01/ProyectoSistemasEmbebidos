@@ -35,12 +35,3 @@ while 1:
     except:
         print("Website Not online")
         time.sleep(2)
-# mydict = {"name": "Aman Singh", "Age":18}
-# a = encode(mydict)
-# print(a)
-# print(type(a))
-# b = decode(a)
-# print(b["name"])
-
-# def upload_data():
-#     pass

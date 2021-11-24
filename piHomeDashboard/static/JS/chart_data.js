@@ -1,3 +1,5 @@
+//Variables para manipular DOM y estado de cada clase
+
 var temperature = document.getElementById('temperature');
 var apikey = document.getElementById('apikey').value ;
 var devicename = "dev1";
@@ -7,6 +9,8 @@ var asistente_status=0
 var google_status=0
 var fiesta_status=0
 
+
+// Función para solicitudes de información de cada clase
 function getdevice(){
 
     setTimeout(getdevice, 2000);
@@ -21,7 +25,6 @@ function getdevice(){
             removeData(temp_chart);
         }
         couter++;
-        //setTimeout(getdevice, 2000);
     });
 
     var requests = $.get('/api/humedad');
@@ -53,15 +56,15 @@ function getdevice(){
         var status=result['ledhab']
         if(led_status!=status)
         {
-            var btn=document.getElementById("btn-ledhab")
+            var btn=document.getElementById("btn-ledhab");
             if (status){
-                btn.className="w3-button w3-red w3-large w3-round-large"
-                btn.innerHTML="Apagar luz de la habitación"
+                btn.className="w3-button w3-red w3-large w3-round-large";
+                btn.innerHTML="Apagar luz de la habitación";
             }else{
-                btn.className="w3-button w3-green w3-large w3-round-large"
-                btn.innerHTML="Prender luz de la habitación"
+                btn.className="w3-button w3-green w3-large w3-round-large";
+                btn.innerHTML="Prender luz de la habitación";
             }
-            led_status=status
+            led_status=status;
         }
 
     });
@@ -72,15 +75,15 @@ function getdevice(){
         var status=result['bomba']
         if(bomba_status!=status)
         {
-            var btn=document.getElementById("btn-bomba")
+            var btn=document.getElementById("btn-bomba");
             if (status){
-                btn.className="w3-button w3-red w3-large w3-round-large"
-                btn.innerHTML="Dejar de regar plantas"
+                btn.className="w3-button w3-red w3-large w3-round-large";
+                btn.innerHTML="Dejar de regar plantas";
             }else{
-                btn.className="w3-button w3-teal w3-large w3-round-large"
-                btn.innerHTML="Regar plantas"
+                btn.className="w3-button w3-teal w3-large w3-round-large";
+                btn.innerHTML="Regar plantas";
             }
-            bomba_status=status
+            bomba_status=status;
         }
 
     });
@@ -91,14 +94,14 @@ function getdevice(){
         var status=result['asistente']
         if(asistente_status!=status)
         {
-            var btn=document.getElementById("btn-asistentevirtual")
+            var btn=document.getElementById("btn-asistentevirtual");
             if (status){
-                btn.className="w3-button w3-red w3-large w3-round-large"
-                btn.innerHTML="Di adiós para terminar asistente"
+                btn.className="w3-button w3-red w3-large w3-round-large";
+                btn.innerHTML="Di adiós para terminar asistente";
                 btn.disabled=true
             }else{
-                btn.className="w3-button w3-blue w3-large w3-round-large"
-                btn.innerHTML="Activar asistente virtual"
+                btn.className="w3-button w3-blue w3-large w3-round-large";
+                btn.innerHTML="Activar asistente virtual";
                 btn.disabled=false
             }
             asistente_status=status
@@ -112,17 +115,15 @@ function getdevice(){
         var status=result['google']
         if(google_status!=status)
         {
-            var btn=document.getElementById("btn-google")
+            var btn=document.getElementById("btn-google");
             if (status){
-                btn.className="w3-button w3-red w3-large w3-round-large"
-                btn.innerHTML="Desactivar asistente de Google"
-                //btn.disabled=true
+                btn.className="w3-button w3-red w3-large w3-round-large";
+                btn.innerHTML="Desactivar asistente de Google";
             }else{
-                btn.className="w3-button w3-indigo w3-large w3-round-large"
-                btn.innerHTML="Activar asistente de Google"
-                //btn.disabled=false
+                btn.className="w3-button w3-indigo w3-large w3-round-large";
+                btn.innerHTML="Activar asistente de Google";
             }
-            google_status=status
+            google_status=status;
         }
 
     });
@@ -133,23 +134,24 @@ function getdevice(){
         var status=result['modofiesta']
         if(fiesta_status!=status)
         {
-            var btn=document.getElementById("btn-modofiesta")
+            var btn=document.getElementById("btn-modofiesta");
             if (status){
-                btn.className="w3-button w3-red w3-large w3-round-large"
-                btn.innerHTML="Modo fiesta está activado"
-                btn.disabled=true
+                btn.className="w3-button w3-red w3-large w3-round-large";
+                btn.innerHTML="Modo fiesta está activado";
+                btn.disabled=true;
             }else{
-                btn.className="w3-button w3-purple w3-large w3-round-large"
-                btn.innerHTML="Modo fiesta"
-                btn.disabled=false
+                btn.className="w3-button w3-purple w3-large w3-round-large";
+                btn.innerHTML="Modo fiesta";
+                btn.disabled=false;
             }
-            fiesta_status=status
+            fiesta_status=status;
         }
 
     });
     
 }
 
+// Funciones para cuando hay cambio de valor
 function cambiarValorLed(){
     var requests = $.get('/api/accion/ledhab');
 }
@@ -170,22 +172,23 @@ function cambiarValorModoFiesta(){
     var requests = $.get('/api/accion/modofiesta');
 }
 
-var btn=document.getElementById("btn-ledhab")
-btn.onclick = cambiarValorLed
+// Variables que controaln el DOM y solicitan el cambio de valores en cada clase
+var btn=document.getElementById("btn-ledhab");
+btn.onclick = cambiarValorLed;
 
-var btn_bomba=document.getElementById("btn-bomba")
-btn_bomba.onclick = cambiarValorBomba
+var btn_bomba=document.getElementById("btn-bomba");
+btn_bomba.onclick = cambiarValorBomba;
 
-var btn_asistentevirtual=document.getElementById("btn-asistentevirtual")
-btn_asistentevirtual.onclick = cambiarValorAsistenteVirtual
+var btn_asistentevirtual=document.getElementById("btn-asistentevirtual");
+btn_asistentevirtual.onclick = cambiarValorAsistenteVirtual;
 
-var btn_google=document.getElementById("btn-google")
-btn_google.onclick = cambiarValorGoogle
+var btn_google=document.getElementById("btn-google");
+btn_google.onclick = cambiarValorGoogle;
 
-var btn_modofiesta=document.getElementById("btn-modofiesta")
-btn_modofiesta.onclick = cambiarValorModoFiesta
+var btn_modofiesta=document.getElementById("btn-modofiesta");
+btn_modofiesta.onclick = cambiarValorModoFiesta;
 
-//temperature chart object created 
+// Tabla para la temperatura sensada
 var temp_chart = new Chart(temperature, {
     type: 'line',
     data: {
@@ -210,7 +213,7 @@ var temp_chart = new Chart(temperature, {
     }
 });
 
-
+// Tabla para la humedad sensada
 var humidity = document.getElementById('humidity');
 var humid_chart = new Chart(humidity, {
     type: 'line',
@@ -235,59 +238,8 @@ var humid_chart = new Chart(humidity, {
         }
     }
 });
-/*
-var moisture = document.getElementById('moisture');
-var moist_chart = new Chart(moisture, {
-    type: 'line',
-    data: {
-        labels: [],
-        datasets: [{
-            label: 'Moisture W.R.T. Time',
-            data: [],
-            fill:true,
-            backgroundColor: 'rgba(0, 150, 136, 0.1)',
-            borderColor:'rgba(0, 150, 136, 1)',
-            borderWidth: 3
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-*/
-/*
-var light = document.getElementById('light');
-var light_chart = new Chart(light, {
-    type: 'line',
-    data: {
-        labels: [],
-        datasets: [{
-            label: 'Light W.R.T. Time',
-            data: [],
-            fill:true,
-            backgroundColor: 'rgba(255, 152, 0, 0.1)',
-            borderColor:'rgba(255, 152, 0, 1)',
-            borderWidth: 3
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
 
-*/
+// Función para agregar información a las tablas
 function addData(chart, label, data) {
     chart.data.labels.push(label);
     chart.data.datasets.forEach((dataset) => {
@@ -296,6 +248,7 @@ function addData(chart, label, data) {
     chart.update();
 }
 
+// Función para eliminar información de las tablas
 function removeData(chart) {
     chart.data.labels.shift();
     chart.data.datasets.forEach((dataset) => {
@@ -304,5 +257,8 @@ function removeData(chart) {
     chart.update();
 }
 
+// Contador para saber cuánta información mostrar
 var couter = 0; 
+
+// Se ejecuta la función en forma de loop
 getdevice();
