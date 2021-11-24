@@ -9,6 +9,7 @@ from aiy.board import Board, Led
 from aiy.cloudspeech import CloudSpeechClient
 import aiy.voice.tts
 from flask import jsonify
+from subprocess import Popen,call,PIPE
 #Función para inicializar valores por defecto
 def get_hints(language_code):
     if language_code.startswith('es_'):
@@ -25,6 +26,9 @@ def locale_language():
     return language
 class AsistenteVirtual():
     def __init__(self,bot,app):
+        sufix=['sudo','python']
+        self.path_script_fiesta=sufix+'/home/pi/lightshowpi/py/synchronized_lights.py --file=/home/pi/stay.mp3'.split(' ')
+        self.sudo_password = 'raspberry'
         self.process=None
         self.activo=0
         @bot.message_handler(commands=['asistentevirtual'])
@@ -88,6 +92,9 @@ class AsistenteVirtual():
                 # Our new command:
                 elif 'reproduce canción' in text:
                     self.process=Popen(['vlc','/home/pi/stay.mp3'])
+                elif 'activa modo fiesta' in text:
+                    self.process=Popen(self.path_script_fiesta,stdin=PIPE,stderr=PIPE,universal_newlines=True)
+                    sudo_prompt = self.process.communicate(self.sudo_password + '\n')[1]
                 elif 'repite después de mí' in text:
                     # Remove "repeat after me" from the text to be repeated
                     to_repeat = text.replace('repeat after me', '', 1)

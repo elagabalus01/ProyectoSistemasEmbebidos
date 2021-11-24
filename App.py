@@ -48,7 +48,7 @@ if __name__=="__main__":
 	led=LED(13)
 	led_bomba=LED(25)
 	bot=getServiceBot(led)
-	ctlShow=LightShow(bot)
+	ctlShow=LightShow(bot,app)
 	ctlAsistente=AsistenteVirtual(bot,app)
 	ctlGoogleAssistant=GoogleAssistant(bot,app)
 	ctlBomba=Bomba(bot,app,led_bomba)

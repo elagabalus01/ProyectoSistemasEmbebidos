@@ -5,6 +5,7 @@ var led_status=0
 var bomba_status=0
 var asistente_status=0
 var google_status=0
+var fiesta_status=0
 
 function getdevice(){
 
@@ -15,7 +16,7 @@ function getdevice(){
         var today = new Date();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         addData(temp_chart, time, result['temperatura']);
-        document.getElementById("card-temp").innerHTML = result['temperatura'];
+        document.getElementById("card-temp").innerHTML = result['temperatura'].toString()+"°C";
         if (couter >= 20 ){
             removeData(temp_chart);
         }
@@ -29,7 +30,7 @@ function getdevice(){
         var today = new Date();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         addData(humid_chart, time, result['humedad']);
-        document.getElementById("card-humidity").innerHTML = result['humedad'];
+        document.getElementById("card-humidity").innerHTML = result['humedad'].toString()+"%";
         if (couter >= 20 ){
             removeData(humid_chart);
         }
@@ -125,6 +126,27 @@ function getdevice(){
         }
 
     });
+
+    var requests = $.get('/api/modofiesta');
+    requests.done(function (result){
+        
+        var status=result['modofiesta']
+        if(fiesta_status!=status)
+        {
+            var btn=document.getElementById("btn-modofiesta")
+            if (status){
+                btn.className="w3-button w3-red w3-large w3-round-large"
+                btn.innerHTML="Modo fiesta está activado"
+                btn.disabled=true
+            }else{
+                btn.className="w3-button w3-purple w3-large w3-round-large"
+                btn.innerHTML="Modo fiesta"
+                btn.disabled=false
+            }
+            fiesta_status=status
+        }
+
+    });
     
 }
 
@@ -144,6 +166,10 @@ function cambiarValorGoogle(){
     var requests = $.get('/api/accion/google');
 }
 
+function cambiarValorModoFiesta(){
+    var requests = $.get('/api/accion/modofiesta');
+}
+
 var btn=document.getElementById("btn-ledhab")
 btn.onclick = cambiarValorLed
 
@@ -155,6 +181,9 @@ btn_asistentevirtual.onclick = cambiarValorAsistenteVirtual
 
 var btn_google=document.getElementById("btn-google")
 btn_google.onclick = cambiarValorGoogle
+
+var btn_modofiesta=document.getElementById("btn-modofiesta")
+btn_modofiesta.onclick = cambiarValorModoFiesta
 
 //temperature chart object created 
 var temp_chart = new Chart(temperature, {
