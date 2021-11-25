@@ -1,5 +1,6 @@
 """Google Cloud Speech"""
-#import argparse
+
+# Importación de bibliotecas
 import locale
 import logging
 import os
@@ -10,7 +11,8 @@ from aiy.cloudspeech import CloudSpeechClient
 import aiy.voice.tts
 from flask import jsonify
 from subprocess import Popen,call,PIPE
-#Función para inicializar valores por defecto
+
+# Función para inicializar valores por defecto
 def get_hints(language_code):
     if language_code.startswith('es_'):
         return ('prende la luz',
@@ -20,10 +22,12 @@ def get_hints(language_code):
         'repite después de mí')
     return None
 
-#Función para determinar lenguaje
+# Función para determinar lenguaje
 def locale_language():
     language, _ = locale.getdefaultlocale()
     return language
+
+# Clase asistente virtual, se establecen servicios de la clase
 class AsistenteVirtual():
     def __init__(self,bot,app):
         sufix=['sudo','python']
@@ -33,6 +37,14 @@ class AsistenteVirtual():
         self.activo=0
         @bot.message_handler(commands=['asistentevirtual'])
         def activar_reconocimiento(message):
+            bot.send_message("1320071778",'''Con el asistente de voz encendido puedes personalizar tus peticiones, algunas son:
+    -> prende la luz
+    -> apaga la luz
+    -> parpadea la luz
+    -> reproduce canción
+    -> activa modo fiesta
+    -> repite después de mí
+    -> termina canción''')
             Thread(target=self.activar_asistente).start()
 
         @app.route('/api/asistentevirtual', methods=['GET', 'POST'])
@@ -59,11 +71,6 @@ class AsistenteVirtual():
     def activar_asistente(self):
         self.activo=1
         logging.basicConfig(level=logging.DEBUG)
-        #parser = argparse.ArgumentParser(description='Assistant service example.')
-        #parser.add_argument('--language', default=locale_language())
-        #args = parser.parse_args()
-
-        #logging.info('Initializing for language %s...', args.language)
         language=locale_language()
         hints = get_hints(language)
         client = CloudSpeechClient()
@@ -89,14 +96,12 @@ class AsistenteVirtual():
                     aiy.voice.tts.say(text.replace('light turned off', '', 1))
                 elif 'parpadea la luz' in text:
                     board.led.state = Led.BLINK
-                # Our new command:
                 elif 'reproduce canción' in text:
                     self.process=Popen(['vlc','/home/pi/stay.mp3'])
                 elif 'activa modo fiesta' in text:
                     self.process=Popen(self.path_script_fiesta,stdin=PIPE,stderr=PIPE,universal_newlines=True)
                     sudo_prompt = self.process.communicate(self.sudo_password + '\n')[1]
                 elif 'repite después de mí' in text:
-                    # Remove "repeat after me" from the text to be repeated
                     to_repeat = text.replace('repeat after me', '', 1)
                     aiy.voice.tts.say(to_repeat)
                 elif 'termina canción' in text:
@@ -108,7 +113,7 @@ class AsistenteVirtual():
                     self.activo=0
                     break
 
-#Función main para hacer reconocimiento de voz
+# Función main para hacer reconocimiento de voz
 def main():
     pass
 

@@ -1,15 +1,24 @@
+# Importación de bibliotecas
 from threading import Thread
 from subprocess import Popen
 from flask import jsonify
+
+# Clase Google assistant, se establecen servicios de la clase
 class GoogleAssistant():
     def __init__(self,bot,app):
         self.currentProcess=None
         self.activo=0
         @bot.message_handler(commands=["googleassistant"])
         def activar_asistente(message):
+            bot.send_message("1320071778",'''Con el asistente de Google encencidido se puede disfrutar de comandos de voz originales de Google:
+    -> ¿Cómo está el clima?
+    -> Dame una receta de cocina
+    -> ¿Cómo está el clima?
+    -> ¡Todo lo que tu desees saber en tiempo real!''')
             Thread(target=self.activarAsistenteGoogle).start()
-        @bot.message_handler(commands=["apagarasistente"])
+        @bot.message_handler(commands=["apagargoogleassistant"])
         def desactivar_asistente(message):
+            bot.send_message("1320071778","Se apagó asistente de Google")
             self.desactivarAsistenteGoogle()
 
         @app.route('/api/google', methods=['GET', 'POST'])

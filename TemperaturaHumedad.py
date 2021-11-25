@@ -20,7 +20,7 @@ class TemperaturaHumedad():
     @bot.message_handler(commands=["humedad"])
     def humedad(message):
       bot.send_message("1320071778","La humedad es: "+str(math.trunc(self.tmpHumedad))+"%")
-    print("Agreagando rutas de flask")
+    print("Agregando rutas de flask")
     @app.route('/api/temperatura', methods=['GET', 'POST'])
     def dash_temperatura():
       try:

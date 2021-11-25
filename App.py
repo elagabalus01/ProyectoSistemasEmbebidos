@@ -1,6 +1,8 @@
 '''
-El progama que controla el hardware de las raspberry
+Programa controlador de hardware de Raspberry y servidor web
 '''
+
+# Importación de bibliotecas
 from Bluetooth import Bluetooth
 from time import sleep
 from threading import Thread
@@ -16,17 +18,12 @@ from Bomba import Bomba
 from LedHab import LedHab
 from piHomeDashboard import PiHome
 from piHomeDashboard.PiHome import app
+from flask import Flask, url_for
+
+# Definición de funciones para controlar hilos
 def bluetooth_connection(led):
 	ctl_bluetooth=Bluetooth(led)
 	pause()
-def debug2():
-	while(True):
-		print("Hilo 1")
-		sleep(5)
-def debug():
-	while True:
-		print("Hilo 2")
-		sleep(5)
 def telegram(bot):
     bot.infinity_polling()
 def intruso(bot,app):
@@ -35,7 +32,18 @@ def intruso(bot,app):
 def sensorTemp(bot,app):
 	ctlTempHum=TemperaturaHumedad(bot,app)
 	ctlTempHum.run()
+
+# Funciones para controlar debug
+def debug2():
+	while(True):
+		print("Hilo 1")
+		sleep(5)
+def debug():
+	while True:
+		print("Hilo 2")
+		sleep(5)
 	
+# Main para inicializar la Raspberry y sus servicios
 if __name__=="__main__":
 	print("Iniciando ejecución")
 	led=LED(13)
@@ -56,5 +64,5 @@ if __name__=="__main__":
 	t3.start()
 	t4.start()
 	app.run(host="0.0.0.0", port = "3000")
-
-
+	app.add_url_rule('/favicon.ico',
+                 redirect_to=url_for('static', filename='./piHomeDashboard/static/images/icons/favicon.ico'))

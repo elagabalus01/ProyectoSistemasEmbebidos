@@ -1,9 +1,11 @@
+# Importación de bibliotecas
 import os
 from gpiozero import MotionSensor
 import telebot
 from flask import jsonify
 import time
 
+# Clase Movimiento para sensor PIR, se establecen servicios de la clase
 class Movimiento():
     def __init__(self,bot,app):
         self.pir=MotionSensor(4)
@@ -22,7 +24,6 @@ class Movimiento():
         @app.route('/api/intruso', methods=['GET', 'POST'])
         def dash_movimiento():
             try:
-                #this part is hard coded so remove after fixing the issue
                 data = dict()
                 data['intruso'] = self.intruso
                 return jsonify(data)
@@ -31,7 +32,6 @@ class Movimiento():
                 return jsonify({"data":"Oops Looks like api is not correct"})
 
     def run(self):
-        # Si se detecta movimiento se imprime en consola, se manda mensaje a telegram y se enciende el led
         while True:
             if(self.detecta_intruso):
                 self.pir.wait_for_motion()

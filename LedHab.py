@@ -1,5 +1,7 @@
+# Importación de biblioteca
 from flask import jsonify
 
+# Clase del led de la habitación, se establecen servicios de la clase
 class LedHab():
     def __init__(self,app,led):
         self.led=led

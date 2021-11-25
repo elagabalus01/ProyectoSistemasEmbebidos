@@ -1,4 +1,7 @@
+# Importación de biblioteca
 from flask import jsonify
+
+# Clase bomba, se establecen servicios de la clase
 class Bomba():
     def __init__(self,bot,app,led3):
         #Función de comando para encender la bomba

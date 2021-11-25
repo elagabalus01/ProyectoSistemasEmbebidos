@@ -1,10 +1,12 @@
+# Importación de bibliotecas
 import os
 from threading import Thread
 import signal
 from subprocess import Popen,call,PIPE
 from flask import jsonify
 import time
-sudo_password = 'raspberry'
+
+# Clase LightShow, se establecen servicios de la clase
 class LightShow():
   def __init__(self,bot,app):
     sufix=['sudo','python']
@@ -18,19 +20,16 @@ class LightShow():
     self.currentProcess=None
     self.activo=0
     
-    # Función de comando para ejecutar hardware_controller.py con flash
     @bot.message_handler(commands=["flash"])
     def flash(message):
       bot.send_message("1320071778","Iniciando flash")
       Thread(target=self.flash_thread).start()
     
-    # Función de comando para ejecutar prepostshow
     @bot.message_handler(commands=["show"])
     def show(message):
       bot.send_message("1320071778","Iniciando show")
       Thread(target=self.show_thread).start()
 
-    # Función de comando para reproducir música y encender leds
     @bot.message_handler(commands=["musica"])
     def musica(message):
       bot.send_message("1320071778","Reproduciendo música")
@@ -58,18 +57,17 @@ class LightShow():
         print (e)
         return jsonify(data={'status_modofiesta':False})
       
-  # Función de thread para ejecutar prepostshow
   def show_thread(self):
     p=Popen(self.path_script_prepost,stdin=PIPE,stderr=PIPE,universal_newlines=True)
     sudo_prompt = p.communicate(sudo_password + '\n')[1]
-  # Función de thread para reproducir música y encender leds
+
   def musica_thread(self):
     self.activo=1
     time.sleep(5)
     self.activo=0
     p=Popen(self.path_script_music,stdin=PIPE,stderr=PIPE,universal_newlines=True)
     sudo_prompt = p.communicate(sudo_password + '\n')[1]
-  # Función de thread para ejecutar hardware_controller.py con flash
+
   def flash_thread(self):
     p=Popen(self.path_script_show,stdin=PIPE,stderr=PIPE,universal_newlines=True)
     sudo_prompt = p.communicate(sudo_password + '\n')[1]

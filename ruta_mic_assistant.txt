@@ -1,1 +1,2 @@
 /home/pi/.config/google-assistant-library/assistant/mic_state
+configuración de .asoundrc
