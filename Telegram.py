@@ -52,7 +52,9 @@ Con el asistente de voz encendido puedes personalizar tus peticiones, algunas so
     -> repite después de mí
     -> termina canción
 
-Para ver las opciones disponibles de nuevo escribe el comando /start, por lo mientras disfruta de nuestra solución IoT 😁😋**''', parse_mode= 'Markdown')
+Para ver las opciones disponibles de nuevo escribe el comando /start, por lo mientras disfruta de nuestra solución IoT 😁😋. 
+Si quieres ver la versión web:
+👉 192.168.1.68:3000**''', parse_mode= 'Markdown')
     
 
     # Función de comando para apagar led
@@ -118,7 +120,9 @@ Con el asistente de voz encendido puedes personalizar tus peticiones, algunas so
     -> repite después de mí
     -> termina canción
 
-Para ver las opciones disponibles de nuevo escribe el comando /start, por lo mientras disfruta de nuestra solución IoT 😁😋**''', parse_mode= 'Markdown')
+Para ver las opciones disponibles de nuevo escribe el comando /start, por lo mientras disfruta de nuestra solución IoT 😁😋. 
+Si quieres ver la versión web:
+👉 192.168.1.68:3000**''', parse_mode= 'Markdown')
     
     return bot
 if __name__=="__main__":
