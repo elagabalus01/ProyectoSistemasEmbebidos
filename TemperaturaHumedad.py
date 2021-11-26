@@ -1,3 +1,4 @@
+# importación de bibliotecas
 import Adafruit_DHT
 import time
 import telebot
@@ -5,6 +6,7 @@ import math
 from threading import Thread
 from flask import jsonify
 
+# Clasee para 
 class TemperaturaHumedad():
   def __init__(self,bot,app):
     self.sensor=Adafruit_DHT.DHT11

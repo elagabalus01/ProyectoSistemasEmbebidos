@@ -1,11 +1,14 @@
+# Importación de bibliotecas
 from piHomeDashboard.database import db
 import hashlib
 from passlib.hash import sha512_crypt as sha
 from datetime import datetime
 import json
 
+# Clase del usuario
 class user:
 
+    # Función de inicialización con lectura a base de datos
     def __init__(self, username, password):
         with open('config.json','r') as file:
             env=json.loads(file.read())
@@ -15,8 +18,8 @@ class user:
         self.authenticated = False
         self.auth()
         self.get_details()
-        self.get_devices()
 
+    # Se autentica al usuario
     def auth (self):
         try:
             query = 'select password from users where username = "{0}"'.format(self.username)
@@ -39,6 +42,7 @@ class user:
             print("[ERROR!]")
             print(e)
 
+    # Se obtienen los detalles del usuario
     def get_details (self):
         
         try:

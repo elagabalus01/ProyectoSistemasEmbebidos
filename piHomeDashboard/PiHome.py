@@ -1,3 +1,4 @@
+# Importación de bibliotecas
 from flask import Flask, render_template, jsonify, redirect, request
 import json, base64
 from random import choice

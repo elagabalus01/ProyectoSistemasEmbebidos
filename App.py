@@ -64,5 +64,3 @@ if __name__=="__main__":
 	t3.start()
 	t4.start()
 	app.run(host="0.0.0.0", port = "3000")
-	app.add_url_rule('/favicon.ico',
-                 redirect_to=url_for('static', filename='./piHomeDashboard/static/images/icons/favicon.ico'))

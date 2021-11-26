@@ -29,6 +29,8 @@ def locale_language():
 
 # Clase asistente virtual, se establecen servicios de la clase
 class AsistenteVirtual():
+    
+    # Inicialización de clase asistente virtual
     def __init__(self,bot,app):
         sufix=['sudo','python']
         self.path_script_fiesta=sufix+'/home/pi/lightshowpi/py/synchronized_lights.py --file=/home/pi/stay.mp3'.split(' ')
@@ -47,6 +49,7 @@ class AsistenteVirtual():
     -> termina canción''')
             Thread(target=self.activar_asistente).start()
 
+        # Función para obtener información
         @app.route('/api/asistentevirtual', methods=['GET', 'POST'])
         def dash_asistente():
             try:
@@ -57,6 +60,7 @@ class AsistenteVirtual():
                 print (e)
                 return jsonify({"data":"Oops Looks like api is not correct"})
 
+        # Función para correr comando desde WEB
         @app.route('/api/accion/asistentevirtual', methods=['GET', 'POST'])
         def accion_asistente():
             try:
@@ -68,6 +72,7 @@ class AsistenteVirtual():
                 print (e)
                 return jsonify(data={'status_asistente':False})
     
+    # Función para activar asistente
     def activar_asistente(self):
         self.activo=1
         logging.basicConfig(level=logging.DEBUG)
