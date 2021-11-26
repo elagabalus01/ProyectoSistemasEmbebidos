@@ -1,4 +1,0 @@
-flask
-passlib
-mysql-connector-python
-jsonify

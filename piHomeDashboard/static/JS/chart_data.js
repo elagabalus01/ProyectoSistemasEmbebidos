@@ -1,5 +1,4 @@
-//Variables para manipular DOM y estado de cada clase
-
+// Variables para manipular DOM y estado de cada clase
 var temperature = document.getElementById('temperature');
 var apikey = document.getElementById('apikey').value ;
 var devicename = "dev1";
@@ -8,7 +7,6 @@ var bomba_status=0
 var asistente_status=0
 var google_status=0
 var fiesta_status=0
-
 
 // Función para solicitudes de información de cada clase
 function getdevice(){

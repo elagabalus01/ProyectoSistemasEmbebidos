@@ -18,7 +18,6 @@ class user:
         self.get_devices()
 
     def auth (self):
-        #this is the place where user will get authenticated
         try:
             query = 'select password from users where username = "{0}"'.format(self.username)
             self.db.cursor.execute(query)
@@ -62,68 +61,4 @@ class user:
 
         except Exception as e:
             print("ERROR!")
-            print(e)
-    
-    def get_devices(self):
-
-        try:
-            if self.authenticated:
-                query = 'select deviceID from Node where username = "{0}"'.format(self.username)
-                self.db.cursor.execute(query)
-                output = self.db.cursor.fetchall()
-                dummy = []
-                for dev in output:
-                    dummy.append(dev[0])
-                self.device_list = dummy
-                return dummy
-            else:
-                return False
-
-        except Exception as e:
-            print("[Error!]")
-            print (e)
-
-    def dev_info(self, deviceID):
-        try:
-            
-            if self.authenticated:
-                self.db.db.commit()
-                query = 'select * from Node where deviceID="{0}";'.format(deviceID)
-                self.db.cursor.execute(query)
-                output = self.db.cursor.fetchall()
-                print(output)
-                return output[0]
-            else:
-                return False
-
-        except Exception as e:
-            print('[ERROR!]')
-            print(e)
-    
-    def field_values(self, fieldname):
-        #here we will access all the values of devices according to time
-        try:
-            if self.authenticated:
-                query = 'select * from (select * from {0} order by date_time desc limit 10) dummy order by date_time asc;'.format(fieldname)
-                self.db.cursor.execute(query)
-                output = self.db.cursor.fetchall()
-                return output
-            else:
-                return False
-        except Exception as e:
-            print('[ERROR!]')
-            print(e)
-
-    def device_values(self, fieldname, deviceID):
-        try:
-            if self.authenticated:
-                query = 'select * from (select * from (select * from {0} where deviceID = "{1}") var1 order by date_time desc limit 10) dummy order by date_time asc;'.format(fieldname, deviceID)
-                self.db.cursor.execute(query)
-                output = self.db.cursor.fetchall()
-                return output
-            else:
-                return False
-
-        except Exception as e:
-            print('[ERROR!]')
             print(e)

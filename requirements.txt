@@ -1,3 +1,6 @@
 bluedot
 PyTelegramBotAPI
 Adafruit_DHT
+flask
+passlib
+mysql-connector-python
