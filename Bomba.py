@@ -3,7 +3,11 @@ from flask import jsonify
 
 # Clase bomba, se establecen servicios de la clase
 class Bomba():
+
+    # Función de inicialización de la clase bomba
     def __init__(self,bot,app,led3):
+
+        # Se definen comandos utilizados por el bot
         @bot.message_handler(commands=["enciendebomba"])
         def encendido(message):
             led3.on()
@@ -14,6 +18,7 @@ class Bomba():
             led3.off()
             bot.send_message("1320071778","Bomba apagada")
         
+        # Se define la obtención de información de la bomba
         @app.route('/api/bomba', methods=['GET', 'POST'])
         def dash_bomba():
             try:
@@ -24,6 +29,7 @@ class Bomba():
                 print (e)
                 return jsonify({"data":"Oops Looks like api is not correct"})
         
+        # Ejecución de función a través de WEB
         @app.route('/api/accion/bomba', methods=['GET', 'POST'])
         def accion_bomba():
             try:

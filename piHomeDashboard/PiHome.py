@@ -102,7 +102,6 @@ def logout(username, session):
 
     if username in logged_in and (logged_in[username]['object'].session_id == session):
         logged_in.pop(username)
-        # print("logged out")
         return redirect('/')
     else:
         return redirect('/login')
