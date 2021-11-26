@@ -56,6 +56,7 @@ class GoogleAssistant():
         command="/home/pi/env/bin/python -u /home/pi/GassistPi/src/main.py --project_id commanding-time-330120 --device_model_id commanding-time-330120-googleassistant-fse-4psaid"
         self.currentProcess=Popen(command.split())
     
+    # Función para desactivar el asistente de Google
     def desactivarAsistenteGoogle(self):
         if self.currentProcess!=None:
             self.currentProcess.terminate()

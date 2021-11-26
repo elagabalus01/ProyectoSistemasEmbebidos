@@ -3,8 +3,12 @@ from flask import jsonify
 
 # Clase del led de la habitación, se establecen servicios de la clase
 class LedHab():
+
+    # Función para inicializar clase del led de la habitación
     def __init__(self,app,led):
         self.led=led
+
+        # Obtención del estado del led de la habitación
         @app.route('/api/ledhab', methods=['GET', 'POST'])
         def dash_ladhab():
             try:
@@ -15,6 +19,7 @@ class LedHab():
                 print (e)
                 return jsonify({"data":"Oops Looks like api is not correct"})
         
+        # Acción en led de la habitación
         @app.route('/api/accion/ledhab', methods=['GET', 'POST'])
         def accion_ledhab():
             try:

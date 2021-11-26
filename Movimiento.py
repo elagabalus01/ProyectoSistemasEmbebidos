@@ -7,12 +7,15 @@ import time
 
 # Clase Movimiento para sensor PIR, se establecen servicios de la clase
 class Movimiento():
+
+    # Función de inicialización para clase Movimiento
     def __init__(self,bot,app):
         self.pir=MotionSensor(4)
         self.bot=bot
         self.intruso=False
         self.detecta_intruso=False
 
+        # Comando que será cachado por bot
         @bot.message_handler(commands=['modointruso'])
         def activar_intruso(message):
             self.detecta_intruso= not self.detecta_intruso
@@ -21,6 +24,7 @@ class Movimiento():
             else:
                 self.bot.send_message("1320071778","Modo intruso desactivado")
 
+        # Obtención de información de modo intruso
         @app.route('/api/intruso', methods=['GET', 'POST'])
         def dash_movimiento():
             try:
@@ -30,7 +34,8 @@ class Movimiento():
             except Exception as e:
                 print (e)
                 return jsonify({"data":"Oops Looks like api is not correct"})
-
+    
+    # Función de ejecución para clase Movimiento
     def run(self):
         while True:
             if(self.detecta_intruso):
