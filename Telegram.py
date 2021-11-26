@@ -1,9 +1,11 @@
+# Importación de bibliotecas
 import os
 import telebot
+
+# Inicialización de bot
 def getServiceBot(led):
     API_TOKEN= '2044324567:AAE6IWSJ8VQILqN5WlZQ-L_c6va9po0twuI'
     bot=telebot.TeleBot(API_TOKEN)
-
     bot.send_message("1320071778",'''🌏🏠🤖☑ **Bienvenido a PiHome ☑🤖🏠🌏 
         
 Hay algunas funciones que sirven tanto en Telegram, Web y Bluetooth, por defecto la mayoría se encuentra disponible en Telegram, las disponibles en Web y Bluetooth se indican con (BT, o WEB).
@@ -125,6 +127,8 @@ Si quieres ver la versión web:
 👉 192.168.1.68:3000**''', parse_mode= 'Markdown')
     
     return bot
+
+# Función main para bot
 if __name__=="__main__":
     from gpiozero import LED
     led= LED(13)

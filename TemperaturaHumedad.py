@@ -8,11 +8,14 @@ from flask import jsonify
 
 # Clasee para 
 class TemperaturaHumedad():
+
+  # función de inicialización de clase TemperaturaHumedad
   def __init__(self,bot,app):
     self.sensor=Adafruit_DHT.DHT11
     self.gpio=23
     self.tmpTemperatura = 0
     self.tmpHumedad = 0
+
     # Función de comando para mostrar temperatura
     @bot.message_handler(commands=["temperatura"])
     def temperatura(message):
@@ -23,10 +26,11 @@ class TemperaturaHumedad():
     def humedad(message):
       bot.send_message("1320071778","La humedad es: "+str(math.trunc(self.tmpHumedad))+"%")
     print("Agregando rutas de flask")
+
+    # Obtención de información de temperatura
     @app.route('/api/temperatura', methods=['GET', 'POST'])
     def dash_temperatura():
       try:
-        #this part is hard coded so remove after fixing the issue
         data = dict()
         data['temperatura'] = self.tmpTemperatura
         return jsonify(data)
@@ -34,10 +38,10 @@ class TemperaturaHumedad():
         print (e)
         return jsonify({"data":"Oops Looks like api is not correct"})
       
+    # Obtención de información de humedad
     @app.route('/api/humedad', methods=['GET', 'POST'])
     def dash_humedad():
       try:
-        #this part is hard coded so remove after fixing the issue
         data = dict()
         data['humedad'] = self.tmpHumedad
         return jsonify(data)
@@ -45,6 +49,7 @@ class TemperaturaHumedad():
         print (e)
         return jsonify({"data":"Oops Looks like api is not correct"})
 
+  # Función de ejecución para sensor temperatura-humedad
   def run(self):
     while True:
       self.humedad, self.temperatura = Adafruit_DHT.read(self.sensor, self.gpio)
