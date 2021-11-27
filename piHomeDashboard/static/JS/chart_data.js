@@ -19,10 +19,10 @@ function getdevice(){
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         addData(temp_chart, time, result['temperatura']);
         document.getElementById("card-temp").innerHTML = result['temperatura'].toString()+"°C";
-        if (couter >= 20 ){
+        if ( counter >= 20 ){
             removeData(temp_chart);
         }
-        couter++;
+         counter++;
     });
 
     var requests = $.get('/api/humedad');
@@ -32,10 +32,10 @@ function getdevice(){
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         addData(humid_chart, time, result['humedad']);
         document.getElementById("card-humidity").innerHTML = result['humedad'].toString()+"%";
-        if (couter >= 20 ){
+        if ( counter >= 20 ){
             removeData(humid_chart);
         }
-        couter++;
+         counter++;
     });
 
     var requests = $.get('/api/intruso');
@@ -256,7 +256,7 @@ function removeData(chart) {
 }
 
 // Contador para saber cuánta información mostrar
-var couter = 0; 
+var  counter = 0; 
 
 // Se ejecuta la función en forma de loop
 getdevice();
