@@ -32,7 +32,7 @@ def login():
             logged_in[user.username] = {"object": user}
             return redirect('/overview/{}/{}'.format(request.form['username'], user.session_id))
         else:
-            error = "invalid Username or Passowrd"
+            error = "Usuario o contraseña incorrectos"
        
     return render_template('Login.htm', error=error)
     
