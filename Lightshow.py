@@ -6,6 +6,7 @@ from subprocess import Popen,call,PIPE
 from flask import jsonify
 import time
 from Constantes import Constantes
+sudo_password = 'raspberry'
 
 # Clase LightShow, se establecen servicios de la clase
 class LightShow():
@@ -16,7 +17,7 @@ class LightShow():
     self.path_script_show=sufix+'/home/pi/lightshowpi/py/hardware_controller.py --state=flash'.split(' ')
     self.path_script_music=sufix+'/home/pi/lightshowpi/py/synchronized_lights.py --file=/home/pi/stay.mp3'.split(' ')
     self.path_script_prepost=sufix+'/home/pi/lightshowpi/py/prepostshow.py'.split(' ')
-    sudoPassword = 'raspberry'
+    sudo_password = 'raspberry'
     command = 'mount -t vboxsf lightshowpi /home/pi/lightshowpi'
     self.running=False
     self.currentPID=-1

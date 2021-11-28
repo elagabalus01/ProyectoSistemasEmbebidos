@@ -12,6 +12,7 @@ import aiy.voice.tts
 from flask import jsonify
 from subprocess import Popen,call,PIPE
 from Constantes import Constantes
+from gpiozero import LED
 
 # Función para inicializar valores por defecto
 def get_hints(language_code):
@@ -32,7 +33,8 @@ def locale_language():
 class AsistenteVirtual():
     
     # Inicialización de clase asistente virtual
-    def __init__(self,bot,app):
+    def __init__(self,bot,app,led):
+        self.led=led
         sufix=['sudo','python']
         self.path_script_fiesta=sufix+'/home/pi/lightshowpi/py/synchronized_lights.py --file=/home/pi/stay.mp3'.split(' ')
         self.sudo_password = 'raspberry'
@@ -40,7 +42,7 @@ class AsistenteVirtual():
         self.activo=0
         @bot.message_handler(commands=['asistentevirtual'])
         def activar_reconocimiento(message):
-            bot.send_message(Constantes.chat_id,'''Con el asistente de voz encendido puedes personalizar tus peticiones, algunas son:
+            bot.send_message(Constantes.chat_id(),'''Con el asistente de voz encendido puedes personalizar tus peticiones, algunas son:
     -> prende la luz
     -> apaga la luz
     -> parpadea la luz
@@ -96,12 +98,12 @@ class AsistenteVirtual():
                 text = text.lower()
                 if 'prende la luz' in text:
                     aiy.voice.tts.say(text.replace('light turned on', '', 1))
-                    board.led.state = Led.ON
+                    self.led.on()
                 elif 'apaga la luz' in text:
-                    board.led.state = Led.OFF
+                    self.led.off()
                     aiy.voice.tts.say(text.replace('light turned off', '', 1))
                 elif 'parpadea la luz' in text:
-                    board.led.state = Led.BLINK
+                    self.led.blink()
                 elif 'reproduce canción' in text:
                     self.process=Popen(['vlc','/home/pi/stay.mp3'])
                 elif 'activa modo fiesta' in text:
@@ -117,6 +119,7 @@ class AsistenteVirtual():
                 elif 'adiós' in text:
                     aiy.voice.tts.say(text.replace('goodbye', '', 1))
                     self.activo=0
+                    self.led.off()
                     break
 
 # Función main para hacer reconocimiento de voz
