@@ -40,7 +40,7 @@ Los comandos disponibles son:
 Con el asistente de Google encencidido se puede disfrutar de comandos de voz originales de Google:
     -> ¿Cómo está el clima?
     -> Dame una receta de cocina
-    -> ¿Cómo está el clima?
+    -> ¿Cómo está el tráfico a Ciudad de México?
     -> ¡Todo lo que tu desees saber en tiempo real!
 
 Con el asistente de voz encendido puedes personalizar tus peticiones, algunas son:
