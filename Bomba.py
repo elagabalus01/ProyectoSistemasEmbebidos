@@ -1,5 +1,6 @@
-# Importación de biblioteca
+# Importación de bibliotecas
 from flask import jsonify
+from Constantes import Constantes
 
 # Clase bomba, se establecen servicios de la clase
 class Bomba():
@@ -11,12 +12,12 @@ class Bomba():
         @bot.message_handler(commands=["enciendebomba"])
         def encendido(message):
             led3.on()
-            bot.send_message("1320071778","Bomba encendida")
+            bot.send_message(Constantes.chat_id(),"Bomba encendida")
         
         @bot.message_handler(commands=["apagabomba"])
         def apagado(message):
             led3.off()
-            bot.send_message("1320071778","Bomba apagada")
+            bot.send_message(Constantes.chat_id(),"Bomba apagada")
         
         # Se define la obtención de información de la bomba
         @app.route('/api/bomba', methods=['GET', 'POST'])

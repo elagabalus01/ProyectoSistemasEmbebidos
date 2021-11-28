@@ -5,6 +5,7 @@ import signal
 from subprocess import Popen,call,PIPE
 from flask import jsonify
 import time
+from Constantes import Constantes
 
 # Clase LightShow, se establecen servicios de la clase
 class LightShow():
@@ -25,17 +26,17 @@ class LightShow():
     # Funciones para comandos del bot
     @bot.message_handler(commands=["flash"])
     def flash(message):
-      bot.send_message("1320071778","Iniciando flash")
+      bot.send_message(Constantes.chat_id(),"Iniciando flash")
       Thread(target=self.flash_thread).start()
     
     @bot.message_handler(commands=["show"])
     def show(message):
-      bot.send_message("1320071778","Iniciando show")
+      bot.send_message(Constantes.chat_id(),"Iniciando show")
       Thread(target=self.show_thread).start()
 
     @bot.message_handler(commands=["musica"])
     def musica(message):
-      bot.send_message("1320071778","Reproduciendo música")
+      bot.send_message(Constantes.chat_id(),"Reproduciendo música")
       Thread(target=self.musica_thread).start()
 
     # Obtención del estado de modo fiesta

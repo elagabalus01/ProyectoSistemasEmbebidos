@@ -1,4 +1,4 @@
-# Importación de biblioteca
+# Importación de bibliotecas
 from flask import jsonify
 
 # Clase del led de la habitación, se establecen servicios de la clase

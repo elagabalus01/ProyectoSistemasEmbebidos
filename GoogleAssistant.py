@@ -2,6 +2,7 @@
 from threading import Thread
 from subprocess import Popen
 from flask import jsonify
+from Constantes import Constantes
 
 # Clase Google assistant, se establecen servicios de la clase
 class GoogleAssistant():
@@ -14,7 +15,7 @@ class GoogleAssistant():
         # Funciones definidas para bot
         @bot.message_handler(commands=["googleassistant"])
         def activar_asistente(message):
-            bot.send_message("1320071778",'''Con el asistente de Google encencidido se puede disfrutar de comandos de voz originales de Google:
+            bot.send_message(Constantes.chat_id(),'''Con el asistente de Google encencidido se puede disfrutar de comandos de voz originales de Google:
     -> ¿Cómo está el clima?
     -> Dame una receta de cocina
     -> ¿Cómo está el clima?
@@ -22,7 +23,7 @@ class GoogleAssistant():
             Thread(target=self.activarAsistenteGoogle).start()
         @bot.message_handler(commands=["apagargoogleassistant"])
         def desactivar_asistente(message):
-            bot.send_message("1320071778","Se apagó asistente de Google")
+            bot.send_message(Constantes.chat_id(),"Se apagó asistente de Google")
             self.desactivarAsistenteGoogle()
 
         # Obtención del estado del asistente de Google

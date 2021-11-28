@@ -11,6 +11,7 @@ from aiy.cloudspeech import CloudSpeechClient
 import aiy.voice.tts
 from flask import jsonify
 from subprocess import Popen,call,PIPE
+from Constantes import Constantes
 
 # Función para inicializar valores por defecto
 def get_hints(language_code):
@@ -39,7 +40,7 @@ class AsistenteVirtual():
         self.activo=0
         @bot.message_handler(commands=['asistentevirtual'])
         def activar_reconocimiento(message):
-            bot.send_message("1320071778",'''Con el asistente de voz encendido puedes personalizar tus peticiones, algunas son:
+            bot.send_message(Constantes.chat_id,'''Con el asistente de voz encendido puedes personalizar tus peticiones, algunas son:
     -> prende la luz
     -> apaga la luz
     -> parpadea la luz

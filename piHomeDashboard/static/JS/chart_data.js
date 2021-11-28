@@ -7,6 +7,7 @@ var bomba_status=0
 var asistente_status=0
 var google_status=0
 var fiesta_status=0
+var movimiento_status=0
 
 // Función para solicitudes de información de cada clase
 function getdevice(){
@@ -41,10 +42,19 @@ function getdevice(){
     var requests = $.get('/api/intruso');
     
     var tm = requests.done(function (result){
-        if(result['intruso']){
-            document.getElementById("card-instruso").innerText = "Hay un intruso";
+        var btn=document.getElementById("btn-intruso");
+        if(result['detecta_intruso']){
+            btn.className="w3-button w3-red w3-large w3-round-large";
+            btn.innerHTML="Desactivar modo intruso";
+            if(result['intruso']){
+                document.getElementById("card-instruso").innerText = "Hay un intruso";
+            }else{
+                document.getElementById("card-instruso").innerText = "No hay intrusos";
+            }
         }else{
-            document.getElementById("card-instruso").innerText = "No hay intrusos";
+            btn.className="w3-button w3-blue-grey w3-large w3-round-large";
+            btn.innerHTML="Activar modo intruso";
+            document.getElementById("card-instruso").innerText = "Desactivado";
         }
     });
 
@@ -126,6 +136,7 @@ function getdevice(){
 
     });
 
+
     var requests = $.get('/api/modofiesta');
     requests.done(function (result){
         
@@ -150,6 +161,10 @@ function getdevice(){
 }
 
 // Funciones para cuando hay cambio de valor
+function cambiarValorIntruso(){
+    var requests = $.get('/api/accion/intruso');
+}
+
 function cambiarValorLed(){
     var requests = $.get('/api/accion/ledhab');
 }
@@ -171,6 +186,9 @@ function cambiarValorModoFiesta(){
 }
 
 // Variables que controaln el DOM y solicitan el cambio de valores en cada clase
+var btn_intruso=document.getElementById("btn-intruso");
+btn_intruso.onclick = cambiarValorIntruso;
+
 var btn=document.getElementById("btn-ledhab");
 btn.onclick = cambiarValorLed;
 
