@@ -18,7 +18,7 @@ class GoogleAssistant():
             bot.send_message(Constantes.chat_id(),'''Con el asistente de Google encencidido se puede disfrutar de comandos de voz originales de Google:
     -> ¿Cómo está el clima?
     -> Dame una receta de cocina
-    -> ¿Cómo está el clima?
+    -> ¿Cómo está el tráfico hacia Ciudad de México?
     -> ¡Todo lo que tu desees saber en tiempo real!''')
             Thread(target=self.activarAsistenteGoogle).start()
         @bot.message_handler(commands=["apagargoogleassistant"])
